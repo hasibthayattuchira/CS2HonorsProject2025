@@ -1,11 +1,11 @@
 # CS2HonorsProject2025
 The Smart Task Manager is a C++ program, and an improvisation of the common To-Do List program that almost every computer science student makes, that allows users to manage tasks dynamically using pointers and sorting algorithms. The program gives the users numerous options such as adding, deleting, displaying, and, most importantly, sorting tasks using different sorting methods; this will help users to organize their to-do lists efficiently based on their preferred sorting algorithm. The initial development and objective was to make a menu-driven, pointer-based program that implements sorting while remaining simple and efficient. 
 
-Initial Method of Development:
+*Initial Method of Development*:
 I started off my project by developing the basic structure of allowing users to add and delete tasks, but by also using dynamically allocated memory. In other words, I recreated a basic To-Do List program, but then started implementing advanced concepts such as dynamic allocated memory. I then created a vector, Task, which consists of pointers and this was to store tasks efficiently while making room to implement the sorting algorithms.
 With the help of my computer science professor’s lecture notes about sorting algorithms I was able to implement the following sorting algorithms: Bubble Sort, Selection Sort, and Insertion Sort. However, I was unable to implement the merge sort algorithm because of how complex it generally is to write the algorithm code and implement it in this kind of project. Regarding the other three implemented algorithms, they will be used to sort the tasks based on their priority to be finished based on the users’ preferences. This program was designed and developed in a way that it did not need to use complex libraries and with the help of a simple menu-driven interface.
 
-Troubles:
+*Troubles*:
 Although this program seems simple to develop as this was a recreation of a To-Do List project, but a little more advanced, I still faced multiple problems such as dynamic memory management issues, sorting algorithm performance and time measurement, and general input handling problems.
 - Dynamic Memory Management Issues
 Regarding the dynamic memory management issues, I have forgotten the fundamental lessons in my CS2 course on how to correctly dynamically allocate memory as I have incorrectly deallocated memory countless times as I have developed this program and this has caused memory leaks. Furthermore, I was using “raw pointers” which is not ideal for tracking allocated memory and this led to difficulties in ensuring safe sorting, deleting, and adding of tasks.
@@ -14,7 +14,7 @@ Regarding the sorting algorithm performance and time measurement issue, during t
 - Input Handling Problems
 Lastly, for the general input handling problems, I have forgotten the fundamental lessons I have learned from my CS1 course on using cin.ignore() as it led to skipped user input, causing issues when entering task descriptions. This also led to index errors when it came to deleting tasks; the most common way of finding out this issue was when I was handling invalid or out-of-range indices, and this happened countless times as the program is always asking for input on different tasks, priorities, and more from the user.
 
-Solutions:
+*Solutions*:
 Fortunately, by taking some time to analyze these issues, I was able to fix the dynamic memory management issues, sorting algorithm performance and time measurement problems, and the general input handling problems as well.
 - Memory Management Fixes
 To fix the memory management, I simply added a delete function at the end of the main function as well as added proper deletion of dynamically allocated objects before removing them from the vector. I made sure that every allocated Task* was correctly deleted before the program ended and this was successful in preventing memory leaks.
