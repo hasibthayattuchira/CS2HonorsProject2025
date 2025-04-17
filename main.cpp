@@ -1,3 +1,14 @@
+/******************************************************************* 
+ * Project Title: Smart Task Manager
+ * Author: Hasib Thayattuchira
+ * Date: April 17, 2025
+ * 
+ * The Smart Task Manager is a C++ program, and an improvisation 
+ * of the common To-Do List program that almost every computer 
+ * science student makes, that allows users to manage tasks 
+ * dynamically using pointers and sorting algorithms. 
+ *******************************************************************/
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -23,6 +34,19 @@ void bubbleSort(vector<Task*>& tasks);
 void selectionSort(vector<Task*>& tasks);
 void insertionSort(vector<Task*>& tasks);
 
+/*******************************************************************************
+ * Description:
+ * Starting point of the program. Calls functions with the help of a menu-based
+ * system. Informs user to make choices such as adding, deleting, and sorting
+ * tasks in different ways.
+ *
+ * Input:
+ * N/A
+ *
+ * Output:
+ * An integer representing the exit value to signal back to the OS
+*******************************************************************************/
+
 int main() {
     vector<Task*> tasks; // rather than using arrays, I am going to do something new and use vectors to store tasks
     int choice;
@@ -41,14 +65,14 @@ int main() {
         switch (choice) {
             case 1:
             {
-            		addTask(tasks);
-            		break;
+            	addTask(tasks);
+            	break;
             }
             case 2:
-			{
-					deleteTask(tasks);
-					break;
-			}
+	    {
+		deleteTask(tasks);
+		break;
+	    }
             case 3:
             {
             	displayTasks(tasks);
@@ -87,6 +111,19 @@ int main() {
     return 0;
 }
 
+/*******************************************************************************
+ * Description:
+ * This function allows the users to add tasks with along with their desired
+ * priority the help of a simple getline command. Tasks will be added into
+ * the task vector using push_back
+ *
+ * Input:
+ * A vector address containing a struct pointer and task variable required
+ *
+ * Output:
+ * N/A
+*******************************************************************************/
+
 void addTask(vector<Task*>& tasks) { // this function uses the vector of tasks to add tasks
     Task* newTask = new Task;
     cout << "Enter task description: ";
@@ -97,7 +134,25 @@ void addTask(vector<Task*>& tasks) { // this function uses the vector of tasks t
     tasks.push_back(newTask); // using push_back to add an element to a vector (CS1 technique)
 }
 
+/*******************************************************************************
+ * Description:
+ * This function allows the users to delete tasks by their index in the task
+ * vector using pop_back. A for loop is used to find the index while an if
+ * statement is used check if the index inputted by the user is valid/if there
+ * are any tasks to delete.
+ *
+ * Input:
+ * A vector address containing a struct pointer and task variable required
+ *
+ * Output:
+ * N/A
+*******************************************************************************/
+
 void deleteTask(vector<Task*>& tasks) { // this function uses the vector of tasks to delete tasks
+    if (tasks.empty()) {
+	cout << "No tasks to delete!" << endl;
+	return;
+    }
     int index;
     cout << "Enter task index to delete: ";
     cin >> index;
@@ -113,12 +168,42 @@ void deleteTask(vector<Task*>& tasks) { // this function uses the vector of task
     cout << "Task deleted successfully." << endl;
 }
 
+/*******************************************************************************
+ * Description:
+ * This function allows the users to display the tasks that they have formulated
+ * using a simple for loop and cout statement. It will also check if there 
+ * tasks to display using an if statement.
+ *
+ * Input:
+ * A constant-made vector address containing a struct pointer and task 
+ * variable required
+ *
+ * Output:
+ * N/A
+*******************************************************************************/
+
 void displayTasks(const vector<Task*>& tasks) { // this function uses the vector of tasks to display tasks and uses const to keep it intact
+    if (tasks.empty()) {
+	cout << "No tasks available!" << endl;
+	return;
+    }
     cout << "\nTasks:\n";
     for (int i = 0; i < static_cast<int>(tasks.size()); i++) {
     	cout << i << ". " << tasks[i]->description << " (Priority: " << tasks[i]->priority << ")\n"; // using the -> syntax to send tasks to priority/description variables
     }
 }
+
+/*******************************************************************************
+ * Description:
+ * This function initiates the bubble sort algorithm and starts, ends, and
+ * displays the time for the bubble sort duration.
+ *
+ * Input:
+ * A vector address containing a struct pointer and task variable required
+ *
+ * Output:
+ * N/A
+*******************************************************************************/
 
 void bubbleSort(vector<Task*>& tasks) { // this function uses the vector of tasks to sort inputted tasks using bubble sort
 	auto start = high_resolution_clock::now(); // start the timer to check sorting time
@@ -136,6 +221,18 @@ void bubbleSort(vector<Task*>& tasks) { // this function uses the vector of task
     duration<double> elapsed = end - start; // calculates the elapsed time and returns as doubled
     cout << "Bubble Sort completed in " << elapsed.count() << " seconds." << endl;
 }
+
+/*******************************************************************************
+ * Description:
+ * This function initiates the selection sort algorithm and starts, ends, and
+ * displays the time for the selection sort duration.
+ *
+ * Input:
+ * A vector address containing a struct pointer and task variable required
+ *
+ * Output:
+ * N/A
+*******************************************************************************/
 
 void selectionSort(vector<Task*>& tasks) { // this function uses the vector of tasks to sort inputted tasks using selection sort
 	auto start = high_resolution_clock::now(); // start the timer to check sorting time
@@ -155,6 +252,18 @@ void selectionSort(vector<Task*>& tasks) { // this function uses the vector of t
     duration<double> elapsed = end - start; // calculates the elapsed time and returns as doubled
     cout << "Selection Sort completed in " << elapsed.count() << " seconds." << endl;
 }
+
+/*******************************************************************************
+ * Description:
+ * This function initiates the selection sort algorithm and starts, ends, and
+ * displays the time for the selection sort duration.
+ *
+ * Input:
+ * A vector address containing a struct pointer and task variable required
+ *
+ * Output:
+ * N/A
+*******************************************************************************/
 
 void insertionSort(vector<Task*>& tasks) { // this function uses the vector of tasks to sort inputted tasks using insertion sort
 	auto start = high_resolution_clock::now(); // start the timer to check sorting time
